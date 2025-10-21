@@ -275,16 +275,27 @@ def execute_plotting_and_excel_embedding():
         os.remove(plot_path)
     os.rmdir(TEMP_DIR)
     
-# Use st.success or st.write to display the confirmation message to the user
-st.success(f"Output file successfully created: {output_filename}")
+# --- (Previous logic: Data validation, Plotting Loop, all_plot_files are collected) ---
 
-# Offer the final file for download
-st.download_button(
-    label="📥 Download Output Excel File",  # The text displayed on the button
-    data=excel_data,                       # The file content (must be in bytes)
-    file_name=output_filename,             # The name the user's browser uses
-    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-)
+# --- B. Create Final Excel File with Data and Embedded Plots ---
+
+# 1. Define the output filename BEFORE using it
+output_filename = f'Compressor_Performance_Output_{base_file_name}.xlsx' 
+
+# 2. Set up the Excel Writer
+writer = pd.ExcelWriter(output_filename, engine='xlsxwriter')
+# ... workbook, worksheet logic ...
+
+# 3. Close the writer to save the file
+writer.close() 
+
+# 4. NOW, display the success message (This line must be AFTER the assignment above)
+st.success(f"Output Excel file generated successfully: {output_filename}") # <--- This line must be here
+
+# --- C. Streamlit Download Button Logic ---
+# ... read file content into excel_data ...
+st.download_button(...) 
+# ... cleanup ...
     
 
 # --- Execute the main function ---
