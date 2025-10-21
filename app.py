@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import os
 import xlsxwriter
-from google.colab import files
+from streamlit import files
 from io import StringIO # Retained for compatibility but not used for Excel upload
 
 # ----------------------------------------------------------------------
