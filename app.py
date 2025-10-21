@@ -199,7 +199,7 @@ def execute_plotting_and_excel_embedding():
     print("1. DATA UPLOAD: Click 'Choose Files' to upload your Excel data file (.xlsx).")
     print("-------------------------------------------------------")
     
-    uploaded = files.upload()
+    uploaded = st.file_uploader()
     
     if not uploaded:
         print("No file uploaded. Exiting.")
