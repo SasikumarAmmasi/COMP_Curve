@@ -275,12 +275,16 @@ def execute_plotting_and_excel_embedding():
         os.remove(plot_path)
     os.rmdir(TEMP_DIR)
     
-    print(f"\n-------------------------------------------------------")
-    print(f"2. DOWNLOAD: Successfully created output file: {output_filename}")
-    print("-------------------------------------------------------")
-    
-    # Offer the final file for download
-    st.download_button(...)
+# Use st.success or st.write to display the confirmation message to the user
+st.success(f"Output file successfully created: {output_filename}")
+
+# Offer the final file for download
+st.download_button(
+    label="📥 Download Output Excel File",  # The text displayed on the button
+    data=excel_data,                       # The file content (must be in bytes)
+    file_name=output_filename,             # The name the user's browser uses
+    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+)
     
 
 # --- Execute the main function ---
