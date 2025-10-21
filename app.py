@@ -199,13 +199,13 @@ def execute_plotting_and_excel_embedding():
     print("1. DATA UPLOAD: Click 'Choose Files' to upload your Excel data file (.xlsx).")
     print("-------------------------------------------------------")
     
-    uploaded = st.file_uploader()
+    uploaded_file = st.file_uploader(...)
     
-    if not uploaded:
+    if not uploaded_file:
         print("No file uploaded. Exiting.")
         return
 
-    file_name = list(uploaded.keys())[0]
+    file_name = list(uploaded_file.keys())[0]
     
     try:
         # Read the uploaded Excel file
@@ -225,7 +225,7 @@ def execute_plotting_and_excel_embedding():
     missing_columns = [col for col in required_columns if col not in df.columns]
 
     if missing_columns:
-        print(f"❌ Error: Missing required columns in the uploaded data: {missing_columns}")
+        print(f"❌ Error: Missing required columns in the uploaded_file data: {missing_columns}")
         return
 
     # Analysis
@@ -280,7 +280,7 @@ def execute_plotting_and_excel_embedding():
     print("-------------------------------------------------------")
     
     # Offer the final file for download
-    files.download(output_filename)
+    st.download_button(...)
     
 
 # --- Execute the main function ---
